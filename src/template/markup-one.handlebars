@@ -1,0 +1,7 @@
+<div class="list-item"><img src="{{flags.svg}}" width="30">
+  <p class="country-name">{{name.common}}</p>
+</div>
+<p>Capital: {{capital}}</p>
+<p>Population: {{population}}</p>
+<p>Languages: {{#each languages}}{{this}}{{#unless @last}},{{/unless}} {{/each}}</p>
+

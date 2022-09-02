@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode=development",
+    "dev": "webpack-dev-server --mode=development",
+    "prod": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
@@ -31,6 +35,10 @@
   },
   "dependencies": {
     "clean-webpack-plugin": "^4.0.0",
-    "gh-pages": "^4.0.0"
+    "gh-pages": "^4.0.0",
+    "handlebars-loader": "^1.7.2",
+    "lodash.debounce": "^4.0.8",
+    "notiflix": "^3.2.5",
+    "webpack-dev-server": "^4.10.1"
   }
 }

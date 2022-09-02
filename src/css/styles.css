@@ -18,3 +18,23 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+ul {
+  list-style: none;
+}
+.country-name{
+  margin: 0;
+  display: block;
+margin-left: 10px;
+}
+
+.list-item{
+height: 35px;
+display: flex;
+align-items: center;
+}

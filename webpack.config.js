@@ -6,9 +6,6 @@ const path = require("path");
 module.exports = {
   entry: {
     index: "./src/index.js",
-    colorSwitcher: "./src/01-color-switcher.js",
-    timer: "./src/02-timer.js",
-    promises: "./src/03-promises.js",
   },
   module: {
     rules: [
@@ -30,6 +27,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.handlebars$/,
+        loader: "handlebars-loader",
+      },
     ],
   },
   plugins: [
@@ -39,24 +40,7 @@ module.exports = {
       chunks: ["index"],
       filename: "index.html",
     }),
-    new HtmlWebpackPlugin({
-      template: "./src/html/02-timer.html",
-      inject: "body",
-      chunks: ["timer"],
-      filename: "02-timer.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/html/01-color-switcher.html",
-      inject: "body",
-      chunks: ["colorSwitcher"],
-      filename: "01-color-switcher.html",
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/html/03-promises.html",
-      inject: "body",
-      chunks: ["promises"],
-      filename: "03-promises.html",
-    }),
+
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash:5].css",
       chunkFilename: "[id].[contenthash:5].css",
