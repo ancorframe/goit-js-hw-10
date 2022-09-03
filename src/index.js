@@ -18,7 +18,13 @@ function onInputChange(e) {
   clearCountryList();
   clearCountryInfo();
   if (name) {
-    return fetchCountries(name).then(filterArrayLength).then(renderChange);
+    return fetchCountries(name)
+      .then(filterArrayLength)
+      .then(renderChange)
+      .catch((error) => {
+        console.log(error);
+        return Notify.failure("Oops, there is no country with that name");
+      });
   }
 }
 
@@ -32,9 +38,8 @@ function clearCountryInfo() {
 
 function filterArrayLength(response) {
   if (response.length > 10) {
-    throw Error(
-      Notify.info("Too many matches found. Please enter a more specific name.")
-    );
+    Notify.info("Too many matches found. Please enter a more specific name.");
+    return []; //масив я поставив щоб помилку не ловило в подальших then (там виходить underfind і catch ловить помитку )  )
   }
   return response;
 }
@@ -47,14 +52,13 @@ function renderColection(response) {
     .join("");
 }
 
-
 function renderChange(response) {
-    if (response.length !== 1) {
-      clearCountryList();
-      clearCountryInfo();
-      countryList.innerHTML = renderColection(response);
-      return;
-    }
+  if (response.length !== 1) {
     clearCountryList();
-    countryInfo.innerHTML = compiledTemplate(response[0]);
+    clearCountryInfo();
+    countryList.innerHTML = renderColection(response);
+    return;
+  }
+  clearCountryList();
+  countryInfo.innerHTML = compiledTemplate(response[0]);
 }
